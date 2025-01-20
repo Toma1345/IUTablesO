@@ -1,5 +1,8 @@
-<?php 
+<?php
+    spl_autoload_register(static function(string $fqcn) {
+    $path = str_replace('\\', '/', $fqcn).'.php';
 
-// à faire
+    require_once(''.$path);
+    });
 
 ?>
