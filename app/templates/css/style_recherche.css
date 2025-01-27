@@ -1,3 +1,62 @@
+/* Réinitialisation basique */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style global */
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Pour que le body prenne toute la hauteur de la page */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Le container prend toute la hauteur de la fenêtre */
+}
+
+/* Colonne gauche (1/4 de la largeur) */
+.sidebar {
+    width: 25%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-right: 2px solid #ccc;
+    overflow-y: auto; /* Permet de scroller si le contenu dépasse */
+}
+
+/* Colonne droite (3/4 de la largeur) */
+.results {
+    width: 75%;
+    padding: 20px;
+    background-color: #ffffff;
+    height: 100%; /* Assure que la colonne prend toute la hauteur disponible */
+    overflow-y: auto; /* Permet de scroller si nécessaire */
+}
+
+/* Zone de recherche */
+.search {
+    margin-bottom: 20px;
+}
+
+#searchbar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Types et cuisines (secteurs de filtres) */
+.types, .cuisine, .toggle-group {
+    margin-bottom: 20px;
+}
+
+/* Switch button (ton code existant) */
 .switch {
     display: inline-flex;
     align-items: center;
@@ -40,4 +99,23 @@ input:checked + .slider {
 
 input:checked + .slider::before {
     transform: translate(20px, -50%);
+}
+
+/* Style pour les éléments de liste dans la colonne gauche */
+label {
+    display: block;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Suppression des bordures ou marges indésirables */
+#result, #selected-types, #selected-cuisines, #toggle-result {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Éléments de résultat */
+#result, #selected-types, #selected-cuisines, #toggle-result {
+    padding-top: 10px;
+    margin-top: 10px;
 }
