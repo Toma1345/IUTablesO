@@ -14,7 +14,7 @@
                 
                 <div class="center-section">
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a id="rechercher" href="">Rechercher un restaurant</a></li>
+                    <li><a id="rechercher" href="recherche.php">Rechercher un restaurant</a></li>
                 </div>
 
                 <div class="right-section">
