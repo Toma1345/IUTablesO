@@ -22,7 +22,7 @@
                         <li><a id="connexion" href="login.php">Connexion</a></li>
                         <li><a id="inscription" href="register.php">Inscription</a></li>
                     <?php else: ?>
-                        <li><a id="compte" href="account.php">Mon compte</a></li>
+                        <li><a id="compte" href="profil.php">Mon compte</a></li>
                         <li><a id="deconnexion" href="logout.php">Déconnexion</a></li>
                     <?php endif; ?>
                 </div>
