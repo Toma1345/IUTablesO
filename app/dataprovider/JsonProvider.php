@@ -1,8 +1,8 @@
 <?php
 
 namespace Provider;
+
 use IUTablesO;
-//use /IUTABLESO/app/data/Cuisine;
 use Commentaires;
 
 class JsonProvider
@@ -39,11 +39,11 @@ class JsonProvider
                 $restaurants[] = $this->mapToRestaurant($data[$i]);
             }
         }
-
+/*
         $restaurants[0]->addAvis(new Commentaires\Avis("Moi", "Pas ouf", 1));
         $restaurants[0]->addAvis(new Commentaires\Avis("Mon ami", "Super", 5));
         $restaurants[0]->addAvis(new Commentaires\Avis("Mon ami", "Mieux", 4));
-
+*/
         return $restaurants;
     }
 
@@ -70,6 +70,7 @@ class JsonProvider
                 return $restau;
             }
         }
+
         return null;
     }
 
