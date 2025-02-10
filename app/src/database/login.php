@@ -1,11 +1,8 @@
 <?php
-namespace PHPSupabase;
+namespace IUT\PHPSupabase;
 
-require_once 'Auth.php';
-require_once 'Service.php';
-
-use PHPSupabase\Auth;
-use PHPSupabase\Service;
+use IUT\PHPSupabase\Auth;
+use IUT\PHPSupabase\Service;
 
 // Paramètres de l'API Supabase
 $apiKey = 'VOTRE_CLE_API'; // Remplacez par votre clé API
@@ -32,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($data->access_token)){
             $userData = $data->user; //get the user data
             echo 'Login successfully for user ' . $userData->email;
-
-    } catch(Exception $e){
+        }
+    } catch(\Exception $e){
         echo $auth->getError();
         // Gestion des erreurs
         header('Location: index.html?error=' . urlencode($e->getMessage()));

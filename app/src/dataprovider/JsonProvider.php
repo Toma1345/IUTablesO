@@ -1,9 +1,8 @@
 <?php
+namespace IUT\dataprovider;
+use IUT\dataprovider\Avis;
+use IUT\dataprovider\Restaurant;
 
-namespace Provider;
-use IUTablesO;
-//use /IUTABLESO/app/data/Cuisine;
-use Commentaires;
 
 class JsonProvider
 {
@@ -40,45 +39,46 @@ class JsonProvider
             }
         }
 
-        $restaurants[0]->addAvis(new Commentaires\Avis("Moi", "Pas ouf", 1));
-        $restaurants[0]->addAvis(new Commentaires\Avis("Mon ami", "Super", 5));
-        $restaurants[0]->addAvis(new Commentaires\Avis("Mon ami", "Mieux", 4));
+        $restaurants[0]->addAvis(new Avis("Moi", "Pas ouf", 1));
+        $restaurants[0]->addAvis(new Avis("Mon ami", "Super", 5));
+        $restaurants[0]->addAvis(new Avis("Mon ami", "Mieux", 4));
 
         return $restaurants;
     }
 
-    public function getById(string $id): ?IUTablesO\Restaurant
+    public function getById(string $id): ?Restaurant
     {
         if (!file_exists($this->jsonFilePath)) {
             throw new \Exception("Le fichier JSON n'existe pas.");
         }
 
         $jsonData = file_get_contents($this->jsonFilePath);
-
         $data = json_decode($jsonData, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
         }
 
+        if(str_starts_with($id, "node/")) {
+            $id = substr($id, 5);
+        }
+
         foreach ($data as $restaurantData) {
-            if ($restaurantData['osm_id'] === $id) {
+            if (substr($restaurantData['osm_id'], 5) === $id) {
                 $restau = $this->mapToRestaurant($restaurantData);
-                $restau->addAvis(new Commentaires\Avis("Moi", "Pas ouf", 1));
-                $restau->addAvis(new Commentaires\Avis("Mon ami", "Super", 5));
-                $restau->addAvis(new Commentaires\Avis("Mon ami", "Mieux", 4));
+                $restau->addAvis(new Avis("Moi", "Pas ouf", 1));
                 return $restau;
             }
         }
         return null;
     }
 
-    private function mapToRestaurant(array $restaurantData): IUTablesO\Restaurant
+    private function mapToRestaurant(array $restaurantData): Restaurant
     {
-        return new IUTablesO\Restaurant(
+        return new Restaurant(
             $restaurantData['geo_point_2d']['lon'],
             $restaurantData['geo_point_2d']['lat'],
-            $restaurantData['osm_id'],
+            str_starts_with($restaurantData['osm_id'], 'node/') ? substr($restaurantData['osm_id'], 5) : $restaurantData['osm_id'],
             $restaurantData['type'],
             $restaurantData['name'],
             $restaurantData['operator'] ?? null,

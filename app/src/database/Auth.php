@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPSupabase;
+namespace IUT\PHPSupabase;
 
 class Auth {
     private $suffix = 'auth/v1/';
