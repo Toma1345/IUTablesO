@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require 'header.php';
 ?>
 <!DOCTYPE html>
@@ -12,13 +14,13 @@ require 'header.php';
 <body>
     <div class="profile-container">
         <div class="profile-photo">
-            <img src="../images/profil_user.png" alt="Photo de profil">
+            <img src="<?php echo $_SESSION['img'] ?>" alt="Photo de profil">
         </div>
         <div class="profile-info">
-            <h2>Jean Dupont</h2>
-            <p><strong>Adresse :</strong> 123 Rue de Paris, 75000 Paris</p>
-            <p><strong>Téléphone :</strong> +33 6 12 34 56 78</p>
-            <p><strong>Email :</strong> jean.dupont@example.com</p>
+            <h2><?php echo $_SESSION['user_name'] ?></h2>
+            <p><strong>Adresse :</strong> <?php echo $_SESSION['adresse'] ?></p>
+            <p><strong>Téléphone :</strong> <?php echo $_SESSION['tel'] ?></p>
+            <p><strong>Email :</strong> <?php echo $_SESSION['user_id'] ?></p>
         </div>
     </div>
     <div class="profile-container">
