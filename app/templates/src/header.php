@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IUTables’O</title>
     <link rel="stylesheet" href="./../css/header.css">
 </head>
 <body>
@@ -18,7 +17,7 @@
                 </div>
 
                 <div class="right-section">
-                    <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
                         <li><a id="connexion" href="login.php">Connexion</a></li>
                         <li><a id="inscription" href="register.php">Inscription</a></li>
                     <?php else: ?>
