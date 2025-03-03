@@ -4,6 +4,7 @@ namespace IUT\dataprovider;
 
 use IUT\dataprovider\Avis;
 
+
 class Restaurant
 {
     private string $osmId;
@@ -300,6 +301,7 @@ class Restaurant
             foreach ($this->avis as $avis) {
                 $html .= $avis->render();
             }
+
             $html .= Avis::renderForm();
             $html .= "</section>";
         } else {

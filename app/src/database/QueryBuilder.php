@@ -2,6 +2,7 @@
 
 namespace IUT\PHPSupabase;
 
+
 use Exception;
 use GuzzleHttp\Psr7\Query;
 

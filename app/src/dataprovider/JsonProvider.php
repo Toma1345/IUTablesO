@@ -1,4 +1,5 @@
 <?php
+
 namespace IUT\dataprovider;
 use IUT\dataprovider\Avis;
 use IUT\dataprovider\Restaurant;
@@ -39,6 +40,7 @@ class JsonProvider
             }
         }
 
+
         $restaurants[0]->addAvis(new Avis("Moi", "Pas ouf", 1));
         $restaurants[0]->addAvis(new Avis("Mon ami", "Super", 5));
         $restaurants[0]->addAvis(new Avis("Mon ami", "Mieux", 4));
@@ -47,6 +49,7 @@ class JsonProvider
     }
 
     public function getById(string $id): ?Restaurant
+
     {
         if (!file_exists($this->jsonFilePath)) {
             throw new \Exception("Le fichier JSON n'existe pas.");
@@ -79,6 +82,7 @@ class JsonProvider
             $restaurantData['geo_point_2d']['lon'],
             $restaurantData['geo_point_2d']['lat'],
             str_starts_with($restaurantData['osm_id'], 'node/') ? substr($restaurantData['osm_id'], 5) : $restaurantData['osm_id'],
+
             $restaurantData['type'],
             $restaurantData['name'],
             $restaurantData['operator'] ?? null,

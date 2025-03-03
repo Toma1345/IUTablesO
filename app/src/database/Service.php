@@ -2,6 +2,7 @@
 
 namespace IUT\PHPSupabase;
 
+
 use GuzzleHttp\Psr7\Response;
 
 class Service {
