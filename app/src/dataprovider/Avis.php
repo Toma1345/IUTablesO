@@ -1,5 +1,7 @@
 <?php
-namespace Commentaires;
+
+namespace IUT\dataprovider;
+
 
 class Avis
 {

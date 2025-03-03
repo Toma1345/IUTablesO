@@ -1,8 +1,9 @@
 <?php
 
-namespace IUTablesO;
+namespace IUT\dataprovider;
 
-use Commentaires;
+use IUT\dataprovider\Avis;
+
 
 class Restaurant
 {
@@ -88,7 +89,7 @@ class Restaurant
         return $this->avis;
     }
 
-    public function addAvis(Commentaires\Avis $avis): void
+    public function addAvis(Avis $avis): void
     {
         $this->avis[] = $avis;
     }
@@ -300,7 +301,8 @@ class Restaurant
             foreach ($this->avis as $avis) {
                 $html .= $avis->render();
             }
-            $html .= Commentaires\Avis::renderForm();
+
+            $html .= Avis::renderForm();
             $html .= "</section>";
         } else {
             $html .= "<p>Aucun avis pour le moment.</p>";
