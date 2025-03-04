@@ -159,4 +159,25 @@ class JsonProvider
         }
         return $res;
     }
+
+    public function addAvis(Avis $avis): void
+    {
+        $jsonData = file_get_contents($this->avisFilePath);
+        $data = json_decode($jsonData, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+        }
+
+        $avisData = [
+            "userId" => $avis->getUtilisateur()->getId(),
+            "restauId" => $avis->getRestaurant()->getOsmId(),
+            "commentaire" => $avis->getCommentaire(),
+            "note" => $avis->getNote()
+        ];
+
+        $data[] = $avisData;
+
+        file_put_contents($this->avisFilePath, json_encode($data, JSON_PRETTY_PRINT));
+    }
 }

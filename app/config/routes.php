@@ -8,7 +8,7 @@ return [
     ],
     '/detail' => [
         'controler' => IUT\controlers\Detailcontroler::class,
-        'methods' => ['GET'],
+        'methods' => ['GET', 'POST'],
         'redirect' => '/',
         'requiresArgument' => true
     ],

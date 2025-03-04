@@ -2,7 +2,13 @@
     {
         "userId": 1,
         "restauId": "3422189698",
-        "commentaire": "Très bon miam",
+        "commentaire": "Tr\u00e8s bon miam",
         "note": 5
+    },
+    {
+        "userId": 1,
+        "restauId": "3422189698",
+        "commentaire": "Coucou",
+        "note": 3
     }
 ]

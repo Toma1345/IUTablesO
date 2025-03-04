@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace IUT\controlers;
+
+use IUT\dataprovider\Avis;
 use IUT\dataprovider\JsonProvider;
 
 class Detailcontroler extends Controler
@@ -11,5 +13,15 @@ class Detailcontroler extends Controler
         $restau = $jp->getById($param);
         $restau->setAvis($jp->getAvis($restau));
         $this->render('restaurant', ['restau' => $restau]);
+    }
+
+    public function post(string $param): void
+    {
+        $jp = new JsonProvider(__DIR__ . "/../../data/restaurants_orleans.json");
+        $restau = $jp->getById($param);
+        $user = $_SESSION["user"];
+        $avis = new Avis($user, $restau, $_POST["commentaire"], intval($_POST["note"]));
+        $jp->addAvis($avis);
+        $this->redirectTo("/detail/".$param);
     }
 }

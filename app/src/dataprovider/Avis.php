@@ -96,4 +96,9 @@ class Avis
         $this->commentaire = $commentaire;
     }
 
+    public function getRestaurant(): Restaurant
+    {
+        return $this->restau;
+    }
+
 }

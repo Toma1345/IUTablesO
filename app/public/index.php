@@ -1,9 +1,12 @@
 <?php
     declare(strict_types=1);
 
+use IUT\dataprovider\User;
+
     require_once __DIR__ . '/../vendor/autoload.php';
 
     session_start();
+    #$_SESSION["user"] = new User(1, "Claire", "email", "osef", "pff", "trop belle", "8 novembre");
 
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
