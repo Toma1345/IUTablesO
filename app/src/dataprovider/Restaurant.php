@@ -302,7 +302,7 @@ class Restaurant
                 $html .= $avis->render();
             }
 
-            $html .= Avis::renderForm();
+            $html .= Avis::renderForm($this->osmId);
             $html .= "</section>";
         } else {
             $html .= "<p>Aucun avis pour le moment.</p>";

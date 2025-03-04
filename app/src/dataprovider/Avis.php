@@ -43,11 +43,11 @@ class Avis
         return $html;
     }
 
-    public static function renderForm(): string
+    public static function renderForm(string $idRestau): string
     {
         $html = "<div class='avis'>";
         $html .= "<p>Ajouter un avis</p>";
-        $html .= "<form action='/detail' method='POST'>";
+        $html .= "<form action='/detail/".$idRestau."'method='POST'>";
         $html .= "<div>";
         $html .= "<label for='commentaire'>Votre commentaire :</label>";
         $html .= "<textarea class='avis-textarea' id='commentaire' name='commentaire' required></textarea>";

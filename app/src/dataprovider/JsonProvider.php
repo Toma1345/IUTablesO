@@ -39,12 +39,6 @@ class JsonProvider
                 $restaurants[] = $this->mapToRestaurant($data[$i]);
             }
         }
-
-
-        $restaurants[0]->addAvis(new Avis("Moi", "Pas ouf", 1));
-        $restaurants[0]->addAvis(new Avis("Mon ami", "Super", 5));
-        $restaurants[0]->addAvis(new Avis("Mon ami", "Mieux", 4));
-
         return $restaurants;
     }
 
@@ -69,7 +63,6 @@ class JsonProvider
         foreach ($data as $restaurantData) {
             if (substr($restaurantData['osm_id'], 5) === $id) {
                 $restau = $this->mapToRestaurant($restaurantData);
-                $restau->addAvis(new Avis("Moi", "Pas ouf", 1));
                 return $restau;
             }
         }
