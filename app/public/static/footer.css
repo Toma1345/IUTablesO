@@ -4,7 +4,6 @@ footer {
     border-color: #462009 ;
     border-top: solid;
     padding-bottom: 0.50%;
-
-    position: fixed;
     bottom: 0;
     width: 100%;
+}

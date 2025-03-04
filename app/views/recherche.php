@@ -6,6 +6,7 @@
     <title>Recherche de restaurants</title>
     <script src="/static/scripts/script_recherche.js" defer></script>
     <link rel="stylesheet" href="/static/recherche.css">
+    <link rel="stylesheet" href="/static/header.css">
 </head>
 <body>
 
@@ -34,10 +35,10 @@
 
     <div class="container">
         <div class="sidebar">
-            <form method="GET" action="recherche.php">
+            <form method="GET" action="/search">
                 <div class="search">
                     <h2>Recherche par nom :</h2>
-                    <input id="searchbar" type="search" name="search" placeholder="Rechercher un restaurant ...">
+                    <input id="searchbar" type="search" name="recherche" placeholder="Rechercher un restaurant ...">
                 </div>
 
                 <h2>Ou par critères</h2>
@@ -110,13 +111,10 @@
 
         <div class="results">
             <div class="restaurant-list">
-                <?php foreach ($restaurants as $restaurant) : ?>
-                    <div class="restaurant-card">
-                        <?php
-                            echo $restaurant->renderCard();
-                        ?>
-                    </div>
-                <?php endforeach; ?>
+                <?php foreach ($restaurants as $restaurant) {
+                    echo $restaurant->renderCard();
+                }
+                ?>
             </div>
         </div>
     </div>
