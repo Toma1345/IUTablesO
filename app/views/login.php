@@ -6,6 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $users = json_decode(file_get_contents("users.json"), true);
 
+    $_SESSION['loggedin'] = true;
+
     foreach ($users as $user) {
         if ($user['email'] == $email) {
             if (password_verify($password, $user['password'])) {

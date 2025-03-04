@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="register-container">
         <h2>Inscription</h2>
-        <form method="POST" action="register.php" enctype="multipart/form-data">
+        <form method="POST" action="/suscribe" enctype="multipart/form-data">
             <label for="username">Nom d'utilisateur :</label><br>
             <input type="text" id="username" name="username" required><br>
 

@@ -1,3 +1,7 @@
+<?php
+    $_SESSION['loggedin'] = false;
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
