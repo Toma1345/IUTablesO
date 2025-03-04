@@ -1,0 +1,20 @@
+# Ignore les dossiers et fichiers liés à Composer
+/vendor/
+composer.lock
+
+# Fichiers d'environnement
+.env
+.env.local
+.env.*.local
+
+# Cache et logs
+/cache/
+*.log
+
+# Fichiers temporaires
+/tmp/
+/node_modules/
+
+# Configuration de l'IDE
+.idea/
+.vscode/

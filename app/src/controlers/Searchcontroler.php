@@ -10,7 +10,7 @@ class Searchcontroler extends Controler
 {
     public function get(string $param): void
     {
-        $this->render('search');
+        $this->render('recherche');
     }
 
     public function post(string $param): void
@@ -41,6 +41,6 @@ class Searchcontroler extends Controler
             if ($hasDrive && !$restaurant->getDriveThrough()) {return false;}
         });
         
-        $this->render('search', ['restaurants' => $restau]);
+        $this->render('recherche', ['restaurants' => $restau]);
     }
 }
