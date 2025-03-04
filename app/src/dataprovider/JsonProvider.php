@@ -8,6 +8,8 @@ use IUT\dataprovider\Restaurant;
 class JsonProvider
 {
     private string $jsonFilePath;
+    private string $avisFilePath = "data/avis.json";
+    private string $userFilePath = "data/user.json";
 
     public function __construct(string $jsonFilePath)
     {
@@ -112,5 +114,33 @@ class JsonProvider
             return null;
         }
         return preg_replace('/\s+/', '', $phone);
+    }
+
+    public function getUser(int $id) : User
+    {
+        $jsonData = file_get_contents($this->avisFilePath);
+        $data = json_decode($jsonData, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+        }
+
+        
+    }
+    public function getAvis(Restaurant $restau): array
+    {
+        $res = [];
+        $jsonData = file_get_contents($this->avisFilePath);
+        $data = json_decode($jsonData, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+        }
+        foreach ($data as $avisData){
+            if ($restau->getOsmId()==$avisData['restauId']){
+
+                $avis = new Avis()
+            }
+        }
     }
 }
