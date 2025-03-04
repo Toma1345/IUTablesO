@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$restau->getName()?> - IUTables'O</title>
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/static/detail.css">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 </head>
 
@@ -13,11 +12,11 @@
     <header>
         <nav>
             <ul>
-                <li><img src="./../images/IUTables’O.png" alt="logo"></li>
+                <li><img src="/static/images/IUTables’O.png" alt="logo"></li>
                 
                 <div class="center-section">
                     <li><a href="/">Accueil</a></li>
-                    <li><a id="rechercher" href="recherche.php">Rechercher un restaurant</a></li>
+                    <li><a id="rechercher" href="/search">Rechercher un restaurant</a></li>
                 </div>
 
                 <div class="right-section">
@@ -43,9 +42,8 @@
                 ?>
         </section>
     </main>
-    <footer>
-        <p>Chef de projet : Thomas Brossier - Membres de l'équipe : Nicolas Nauche, Kylian Dumas, Claire Deneau</p>  
-    </footer>
+    <?php
+        require 'footer.php';
+    ?>
 </body>
-
 </html>
