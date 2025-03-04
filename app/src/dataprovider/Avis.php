@@ -5,10 +5,11 @@ namespace IUT\dataprovider;
 
 class Avis
 {
-    private string $utilisateur;
+    private int $utilisateur;
+    private string $restauId;
     private string $commentaire;
     private int $note;
-    public function __construct(string $utilisateur, string $commentaire, int $note)
+    public function __construct(string $utilisateur, string $restauId, string $commentaire, int $note)
     {
         if ($note <= 0) {
             throw new \Exception("La note doit être un entier positif.");
@@ -16,6 +17,7 @@ class Avis
             throw new \Exception("La note doit être inférieure ou égale à 5.");
         }
         $this->utilisateur = $utilisateur;
+        $this-> $restauId = $restauId;
         $this->commentaire = $commentaire;
         $this->note = $note;
     }
