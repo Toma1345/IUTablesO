@@ -7,13 +7,13 @@ use IUT\dataprovider\Restaurant;
 
 class JsonProvider
 {
-    private string $jsonFilePath;
+    private string $jsonFilePath = "../data/restaurants_orleans.json";
     private string $avisFilePath = "../data/avis.json";
     private string $userFilePath = "../data/user.json";
 
-    public function __construct(string $jsonFilePath)
+    public function __construct()
     {
-        $this->jsonFilePath = $jsonFilePath;
+        ;
     }
 
     public function loadRestaurants(int $nb = -1): array
@@ -179,5 +179,33 @@ class JsonProvider
         $data[] = $avisData;
 
         file_put_contents($this->avisFilePath, json_encode($data, JSON_PRETTY_PRINT));
+    }
+
+    public function getAvisByUser(User $user): array
+    {
+        $res = [];
+        $jsonData = file_get_contents($this->avisFilePath);
+        $data = json_decode($jsonData, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+        }
+        foreach ($data as $avisData){
+            if ($user->getId()==$avisData['userId']){
+                $restau = null;
+                foreach ($res as $avis){
+                    if($avis->getRestaurant()->getOsmId() == $avisData["restauId"]){
+                        $restau = $avis->getRestaurant();
+                        break;
+                    }
+                }
+                if(is_null($restau)){
+                    $restau = $this->getById($avisData["restauId"]);
+                }
+                $avis = new Avis($user, $restau, $avisData["commentaire"], intval($avisData["note"]));
+                $res[] = $avis;
+            }
+        }
+        return $res;
     }
 }

@@ -41,5 +41,11 @@ return [
         'methods' => ['GET', 'POST'],
         'redirect' => '/',
         'requiresArgument' => false
+    ],
+    '/mesavis' => [
+        'controler' => IUT\controlers\Aviscontroler::class,
+        'methods' => ['GET', 'POST'],
+        'redirect' => '/',
+        'requiresArgument' => false
     ]
 ];
