@@ -32,6 +32,11 @@ class User
         $this->created_at = $created_at;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getUsername() : string
     {
         return $this->username;

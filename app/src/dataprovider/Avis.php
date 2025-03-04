@@ -17,7 +17,7 @@ class Avis
             throw new \Exception("La note doit être inférieure ou égale à 5.");
         }
         $this->utilisateur = $utilisateur;
-        $this-> $restau = $restau;
+        $this->restau = $restau;
         $this->commentaire = $commentaire;
         $this->note = $note;
     }

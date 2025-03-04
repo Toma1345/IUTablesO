@@ -8,8 +8,8 @@ use IUT\dataprovider\Restaurant;
 class JsonProvider
 {
     private string $jsonFilePath;
-    private string $avisFilePath = "data/avis.json";
-    private string $userFilePath = "data/user.json";
+    private string $avisFilePath = "../data/avis.json";
+    private string $userFilePath = "../data/user.json";
 
     public function __construct(string $jsonFilePath)
     {
@@ -116,16 +116,21 @@ class JsonProvider
         return preg_replace('/\s+/', '', $phone);
     }
 
-    public function getUser(int $id) : User
+    public function getUser(int $id) : ?User
     {
-        $jsonData = file_get_contents($this->avisFilePath);
+        $jsonData = file_get_contents($this->userFilePath);
         $data = json_decode($jsonData, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
         }
 
-        
+        foreach ($data as $userData){
+            if($userData["id"]==$id){
+                return new User($userData["id"], $userData["username"], $userData["email"], $userData["adresse"], $userData["telephone"], $userData["imageprofil"], $userData["created_at"]);
+            }
+        }
+        return null;
     }
     public function getAvis(Restaurant $restau): array
     {
@@ -138,9 +143,20 @@ class JsonProvider
         }
         foreach ($data as $avisData){
             if ($restau->getOsmId()==$avisData['restauId']){
-
-                $avis = new Avis()
+                $user = null;
+                foreach ($res as $avis){
+                    if($avis->getUtilisateur()->getId() == $avisData["userId"]){
+                        $user = $avis->getUtilisateur();
+                        break;
+                    }
+                }
+                if(is_null($user)){
+                    $user = $this->getUser($avisData["userId"]);
+                }
+                $avis = new Avis($user, $restau, $avisData["commentaire"], intval($avisData["note"]));
+                $res[] = $avis;
             }
         }
+        return $res;
     }
 }

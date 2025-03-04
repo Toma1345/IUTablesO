@@ -9,6 +9,7 @@ class Detailcontroler extends Controler
     {
         $jp = new JsonProvider(__DIR__ . "/../../data/restaurants_orleans.json");
         $restau = $jp->getById($param);
+        $restau->setAvis($jp->getAvis($restau));
         $this->render('restaurant', ['restau' => $restau]);
     }
 }
