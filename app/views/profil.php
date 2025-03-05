@@ -41,12 +41,6 @@
             <p><strong>Email :</strong> <?php echo $_SESSION['user_id'] ?></p>
         </div>
     </div>
-    <div class="profile-container">
-        <div class="profile-info">
-            <h2>Mes commentaires et avis</h2>
-            <p><strong>Chat + :</strong> "Très bon restaurant où on peut personnaliser à notre guise les gauffres".</p>
-        </div>
-    </div>
 </body>
 </html>
 <?php

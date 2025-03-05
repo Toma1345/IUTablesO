@@ -9,6 +9,8 @@ class Profilecontroler extends Controler
 {
     public function get(string $param): void
     {
+        $jp = new JsonProvider();
+        $restaurants = $jp->loadRestaurants();
         $this->render('profil');
     }
 }
