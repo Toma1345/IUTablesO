@@ -1,12 +1,22 @@
 [
     {
         "id": 1,
-        "username": "Thomas Brossier",
-        "email": "brossier.thomas.2@gmail.com",
-        "password": "$2y$12$UzaMvfsPNXF9yrzTJWzoJ.CupENhdwPcW4hmKZrv4\/z13j9WSBx7C",
-        "adresse": "123 rue Lorem ipsum 45678 Dolor Sit",
-        "telephone": "0601020304",
-        "imageprofil": "\/app\/templates\/images\/AFFICHE-CDF-10-18-M-2023-VF.jpg",
-        "created_at": "2025-02-10 14:24:15"
+        "username": "thomas",
+        "email": "thomasthomas@gmail.com",
+        "password": "$2y$10$O1k1IE\/8CmMmHFwvVgM19.tyE8DvSJFojJqqm.KbPQFXyrd3oN3.K",
+        "adresse": "15rue 45000 Orl\u00e9ans",
+        "telephone": "076015978",
+        "imageprofil": "",
+        "created_at": "2025-03-06 12:08:29"
+    },
+    {
+        "id": 2,
+        "username": "nivo",
+        "email": "nico@gmail.com",
+        "password": "$2y$10$fTpeEAwQpIdYUdMtbHJWB.j0xRRX3Mwf3\/Je4Ze1Nf03oJX8BvnS6",
+        "adresse": "25 rue de la lionne 4 Orl\u00e9a,s",
+        "telephone": "0760361897",
+        "imageprofil": "",
+        "created_at": "2025-03-06 12:22:46"
     }
 ]

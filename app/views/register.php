@@ -1,51 +1,3 @@
-<?php
-$userExists = false;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $adresse = $_POST['adresse'] . " " . $_POST['CP'] . " " . $_POST['Ville'];
-    $tel = $_POST['tel'];
-
-    $img = '';
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/app/templates/images/"; 
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);  
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            $img = "/app/templates/images/" . basename($_FILES["image"]["name"]);  
-        }
-    }
-
-    $users = json_decode(file_get_contents("users.json"), true);
-
-    foreach ($users as $user) {
-        if ($user['email'] == $email || $user['username'] == $username) {
-            $userExists = true;
-            break;
-        }
-    }
-
-    if ($userExists) {
-        echo "<script>document.addEventListener('DOMContentLoaded', function() { showErrorModal(); });</script>";
-    } else {
-        $users[] = [
-            "username" => $username,
-            "email" => $email,
-            "password" => $password,
-            "adresse" => $adresse,
-            "telephone" => $tel,
-            "imageprofil" => $img,
-            "created_at" => date("Y-m-d H:i:s")
-        ];
-
-        file_put_contents("users.json", json_encode($users, JSON_PRETTY_PRINT));
-
-        echo "<script>document.addEventListener('DOMContentLoaded', function() { showModal(); });</script>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -69,12 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="right-section">
-                    <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <?php if ($_SESSION['loggedin']==false): ?>
                         <li><a id="connexion" href="/login">Connexion</a></li>
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
-                        <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
+                        <form action="/logout" method="get">
+                            <li><a id="deconnexion">Déconnexion</a></li>
+                        </form>
                     <?php endif; ?>
                 </div>
             </ul>
@@ -83,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="register-container">
         <h2>Inscription</h2>
-        <form method="POST" action="/suscribe" enctype="multipart/form-data">
+        <form method="POST" action="suscribe" enctype="multipart/form-data">
             <label for="username">Nom d'utilisateur :</label><br>
             <input type="text" id="username" name="username" required><br>
 
