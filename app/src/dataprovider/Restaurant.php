@@ -304,7 +304,7 @@ class Restaurant
                 $html .= $avis->render();
             }
 
-            $html .= Avis::renderForm();
+            if(isset($_SESSION["user"]) && !empty($_SESSION["user"])) $html .= Avis::renderForm($this->osmId);
             $html .= "</section>";
         } else {
             $html .= "<p>Aucun avis pour le moment.</p>";

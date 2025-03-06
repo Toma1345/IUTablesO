@@ -1,3 +1,4 @@
+vendor/
 # Ignore les dossiers et fichiers liés à Composer
 /app/vendor/
 /app/vendor/composer/
