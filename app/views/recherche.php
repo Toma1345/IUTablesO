@@ -39,71 +39,79 @@
             <form method="GET" action="/search">
                 <div class="search">
                     <h2>Recherche par nom :</h2>
-                    <input id="searchbar" type="search" name="recherche" placeholder="Rechercher un restaurant ...">
+                    <input id="searchbar" type="search" name="recherche" placeholder="Rechercher un restaurant ..." value="<?php echo htmlspecialchars($_GET['recherche'] ?? '', ENT_QUOTES); ?>">
                 </div>
 
                 <h2>Ou par critères</h2>
                 <div class="types">
                     <h2>Par types :</h2>
-                    <label><input type="checkbox" name="type[]" value="bar"> Bar</label>
-                    <label><input type="checkbox" name="type[]" value="restaurant"> Restaurant</label>
-                    <label><input type="checkbox" name="type[]" value="fast_food"> Fast-food</label>
-                    <label><input type="checkbox" name="type[]" value="pub"> Pub</label>
-                    <label><input type="checkbox" name="type[]" value="cafe"> Café</label>
-                    <label><input type="checkbox" name="type[]" value="ice_cream"> Glacier</label>
+                    <?php
+                    $types = [
+                        'bar' => 'Bar',
+                        'restaurant' => 'Restaurant',
+                        'fast_food' => 'Fast-food',
+                        'pub' => 'Pub',
+                        'cafe' => 'Café',
+                        'ice_cream' => 'Glacier'
+                    ];
+                    foreach ($types as $value => $label) {
+                        $checked = in_array($value, $_GET['type'] ?? []) ? 'checked' : '';
+                        echo "<label><input type='checkbox' name='type[]' value='$value' $checked> $label</label>";
+                    }
+                    ?>
                 </div>
 
                 <div class="cuisine">
                     <h2>Par cuisines :</h2>
-                    <label><input type="checkbox" name="cuisine[]" value="salad"> Salade</label>
-                    <label><input type="checkbox" name="cuisine[]" value="chicken"> Poulet</label>
-                    <label><input type="checkbox" name="cuisine[]" value="fish"> Poisson</label>
-                    <label><input type="checkbox" name="cuisine[]" value="kebab"> Kebab</label>
-                    <label><input type="checkbox" name="cuisine[]" value="tacos"> Tacos</label>
-                    <label><input type="checkbox" name="cuisine[]" value="pizza"> Pizza</label>
-                    <label><input type="checkbox" name="cuisine[]" value="grill"> Grill</label>
-                    <label><input type="checkbox" name="cuisine[]" value="seafood"> Mer</label>
-
-                    <label><input type="checkbox" name="cuisine[]" value="gastronomique"> Gastronomique</label>
-                    <label><input type="checkbox" name="cuisine[]" value="traditional"> Traditionnel</label>
-                    <label><input type="checkbox" name="cuisine[]" value="regional"> Régional</label>
-                    <label><input type="checkbox" name="cuisine[]" value="bavarian"> Bavaroise</label>
-
-                    <label><input type="checkbox" name="cuisine[]" value="french"> Français</label>
-                    <label><input type="checkbox" name="cuisine[]" value="afro-latine"> Afro-Latine</label>
-                    <label><input type="checkbox" name="cuisine[]" value="italian"> Italien</label>
-                    <label><input type="checkbox" name="cuisine[]" value="maxican"> Mexicain</label>
-                    <label><input type="checkbox" name="cuisine[]" value="korean"> Coréen</label>
-                    <label><input type="checkbox" name="cuisine[]" value="african"> Africain</label>
-                    <label><input type="checkbox" name="cuisine[]" value="asian"> Asiatique</label>
-                    <label><input type="checkbox" name="cuisine[]" value="vietnamese"> Vietnamienne</label>
-                    <label><input type="checkbox" name="cuisine[]" value="indian"> Indienne</label>
-                    <label><input type="checkbox" name="cuisine[]" value="turkish"> Turck</label>
-
+                    <?php
+                    $cuisines = [
+                        'salad' => 'Salade',
+                        'chicken' => 'Poulet',
+                        'fish' => 'Poisson',
+                        'kebab' => 'Kebab',
+                        'tacos' => 'Tacos',
+                        'pizza' => 'Pizza',
+                        'grill' => 'Grill',
+                        'seafood' => 'Mer',
+                        'gastronomique' => 'Gastronomique',
+                        'traditional' => 'Traditionnel',
+                        'regional' => 'Régional',
+                        'bavarian' => 'Bavaroise',
+                        'french' => 'Français',
+                        'afro-latine' => 'Afro-Latine',
+                        'italian' => 'Italien',
+                        'maxican' => 'Mexicain',
+                        'korean' => 'Coréen',
+                        'african' => 'Africain',
+                        'asian' => 'Asiatique',
+                        'vietnamese' => 'Vietnamienne',
+                        'indian' => 'Indienne',
+                        'turkish' => 'Turque'
+                    ];
+                    foreach ($cuisines as $value => $label) {
+                        $checked = in_array($value, $_GET['cuisine'] ?? []) ? 'checked' : '';
+                        echo "<label><input type='checkbox' name='cuisine[]' value='$value' $checked> $label</label>";
+                    }
+                    ?>
                 </div>
+
+                <button type="button" id="reset_filters">Réinitialiser les filtres</button>
 
                 <div class="toggle-group">
                     <h2>Options :</h2>
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-checkbox" name="vegetarian">
-                        <span class="slider"></span> Végétarien disponible
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-checkbox" name="vegan">
-                        <span class="slider"></span> Végan disponible
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-checkbox" name="drive_through">
-                        <span class="slider"></span> Drive disponible
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-checkbox" name="delivery">
-                        <span class="slider"></span> Livraison disponible
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-checkbox" name="takeaway">
-                        <span class="slider"></span> À emporter disponible
-                    </label>
+                    <?php
+                    $options = [
+                        'vegetarian' => 'Végétarien disponible',
+                        'vegan' => 'Végan disponible',
+                        'drive_through' => 'Drive disponible',
+                        'delivery' => 'Livraison disponible',
+                        'takeaway' => 'À emporter disponible'
+                    ];
+                    foreach ($options as $name => $label) {
+                        $checked = isset($_GET[$name]) ? 'checked' : '';
+                        echo "<label class='switch'><input type='checkbox' class='toggle-checkbox' name='$name' $checked><span class='slider'></span> $label</label>";
+                    }
+                    ?>
                 </div>
 
                 <button id="valide_choice" type="submit">Appliquer les filtres</button>
