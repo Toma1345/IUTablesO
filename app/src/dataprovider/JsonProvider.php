@@ -66,13 +66,23 @@ class JsonProvider
         return $users;
     }
 
-    public function uploadUsers($newUser): void 
-    {
-        if (!file_exists($this->userFilePath)) {
-            throw new \Exception("Le fichier JSON n'existe pas.");
-        }
-        file_put_contents($this->userFilePath, json_encode($newUser, JSON_PRETTY_PRINT));
+    public function uploadUsers(array $newUser): void 
+{
+    if (!file_exists($this->userFilePath)) {
+        throw new \Exception("Le fichier JSON n'existe pas.");
     }
+
+    $jsonData = file_get_contents($this->userFilePath);
+    $data = json_decode($jsonData, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+    }
+
+    $data[] = $newUser;
+
+    file_put_contents($this->userFilePath, json_encode($data, JSON_PRETTY_PRINT));
+}
 
     public function getById(string $id): ?Restaurant
     {

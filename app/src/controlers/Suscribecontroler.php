@@ -32,7 +32,6 @@ class Suscribecontroler extends Controler
 
         $jp = new JsonProvider();
         $users = $jp->loadUsers();
-        print_r($users);
         foreach ($users as $user) {
             if ($user->getEmail() == $email || $user->getUsername() == $username) {
                 $userExists = true;
@@ -43,9 +42,11 @@ class Suscribecontroler extends Controler
         if ($userExists) {
             echo "<script>document.addEventListener('DOMContentLoaded', function() { showErrorModal(); });</script>";
         } else {
-            $lastUserId = end($users)->getId();
-            $users[] = [
-                "id" => $lastUserId + 1,
+            $lastUser = end($users);
+            $newId = $lastUser ? $lastUser->getId() + 1 : 1;
+        
+            $newUser = [
+                "id" => $newId,
                 "username" => $username,
                 "email" => $email,
                 "password" => $password,
@@ -54,12 +55,12 @@ class Suscribecontroler extends Controler
                 "imageprofil" => $img,
                 "created_at" => date("Y-m-d H:i:s")
             ];
-
-            $jp->uploadUsers($users);
-
+        
+            $jp->uploadUsers($newUser);
+        
             echo "<script>document.addEventListener('DOMContentLoaded', function() { showModal(); });</script>";
         }
-
+        
         $this->render('login');
     }
 }

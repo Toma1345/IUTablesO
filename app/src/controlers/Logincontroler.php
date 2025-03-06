@@ -17,28 +17,28 @@ class Logincontroler extends Controler
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $users = json_decode(file_get_contents("users.json"), true);
-
-        $_SESSION['loggedin'] = true;
+        $jp = new JsonProvider();
+        $users = $jp->loadUsers();
+        
 
         foreach ($users as $user) {
-            if ($user['email'] == $email) {
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['user_id'] = $user['email'];
-                    $_SESSION['user_name'] = $user['username'];
-                    $_SESSION['adresse'] = $user['adresse'];
-                    $_SESSION['tel'] = $user['telephone'];
-                    $_SESSION['img'] = $user['imageprofil'];
-                    
-                    header('Location: profil.php');
-                    exit;
+            if ($user->getEmail() == $email) {
+                if (password_verify($password, $user->getPassword())) {
+                    $_SESSION['user_id'] = $user->getId();
+                    $_SESSION['email'] = $user->getEmail();
+                    $_SESSION['user_name'] = $user->getUsername();
+                    $_SESSION['adresse'] = $user->getAdresse();
+                    $_SESSION['tel'] = $user->getTelephone();
+                    $_SESSION['img'] = $user->getImageProfil();
+                    $_SESSION['loggedin'] = true;
                 } else {
                     $error = "Mot de passe incorrect.";
                 }
+            } else {
+                $error = "Aucun utilisateur trouvé avec cet e-mail.";
             }
         }
-
-        $error = "Aucun utilisateur trouvé avec cet e-mail.";
+        $this->render('profil', ['erreur' => $error]);
     }
 }
    

@@ -20,12 +20,14 @@
                 </div>
 
                 <div class="right-section">
-                    <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <?php if ($_SESSION['loggedin']==false): ?>
                         <li><a id="connexion" href="/login">Connexion</a></li>
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
-                        <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
+                        <form action="/logout" method="get">
+                            <li><a id="deconnexion">Déconnexion</a></li>
+                        </form>
                     <?php endif; ?>
                 </div>
             </ul>

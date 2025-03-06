@@ -38,7 +38,7 @@
             <h2><?php echo $_SESSION['user_name'] ?></h2>
             <p><strong>Adresse :</strong> <?php echo $_SESSION['adresse'] ?></p>
             <p><strong>Téléphone :</strong> <?php echo $_SESSION['tel'] ?></p>
-            <p><strong>Email :</strong> <?php echo $_SESSION['user_id'] ?></p>
+            <p><strong>Email :</strong> <?php echo $_SESSION['email'] ?></p>
         </div>
     </div>
     <div class="profile-container">
