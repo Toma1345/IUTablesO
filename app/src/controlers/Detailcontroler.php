@@ -14,7 +14,7 @@ class Detailcontroler extends Controler
         $jp = new JsonProvider();
         $restau = $jp->getById($param);
         $restau->setAvis($jp->getAvis($restau));
-        $this->render('restaurant', ['restau' => $restau]);
+        $this->render('detail', ['restau' => $restau]);
 
     }
 

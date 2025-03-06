@@ -31,14 +31,18 @@ class Logincontroler extends Controler
                     $_SESSION['tel'] = $user->getTelephone();
                     $_SESSION['img'] = $user->getImageProfil();
                     $_SESSION['loggedin'] = true;
+                    $_SESSION['user']=$user;
+                    $this->redirectTo('/me');
                 } else {
                     $error = "Mot de passe incorrect.";
+                    $this->render('login', ['erreur' => $error]);
                 }
             } else {
-                $error = "Aucun utilisateur trouvé avec cet e-mail.";
+                $error = "Utilisateur ou mot de passe incorrect.";
+                $this->render('login', ['erreur' => $error]);
             }
         }
-        $this->render('profil', ['erreur' => $error]);
+        
     }
 }
    

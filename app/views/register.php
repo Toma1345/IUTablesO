@@ -26,9 +26,7 @@
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
-                        <form action="/logout" method="get">
-                            <li><a id="deconnexion">Déconnexion</a></li>
-                        </form>
+                        <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
                     <?php endif; ?>
                 </div>
             </ul>

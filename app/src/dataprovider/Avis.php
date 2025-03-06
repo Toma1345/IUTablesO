@@ -36,17 +36,17 @@ class Avis
     public function render(): string
     {
         $html = "<div class='avis'>";
-        $html .= "<p><strong>Utilisateur : </strong>" . ucfirst($this->utilisateur->getUsername()) . "</p>";
-        $html .= "<p><strong>Commentaire : </strong>" . ucfirst($this->commentaire) . "</p>";
-        $html .= "<p><strong>Note : </strong>" . $this->note . "/5" . $this->renderStars() . "</p>";
-        $html .= "</div>";
+        $html .= "<p><strong>Utilisateur : </strong><p class='comment'>" . ucfirst($this->utilisateur->getUsername()) . "</p></p>";
+        $html .= "<p><strong>Commentaire : </strong><p class='comment'>" . ucfirst($this->commentaire) . "</p></p>";
+        $html .= "<p><strong>Note : </strong><div class='notation-avis'>" . $this->note . "/5" . $this->renderStars() . "</p>";
+        $html .= "</div></div>";
         return $html;
     }
 
     public static function renderForm(string $idRestau): string
     {
-        $html = "<div class='avis'>";
-        $html .= "<p>Ajouter un avis</p>";
+        $html = "<div class='avis-form'>";
+        $html .= "<h3>Ajouter un avis</h3>";
         $html .= "<form action='/detail/".$idRestau."'method='POST'>";
         $html .= "<div>";
         $html .= "<label for='commentaire'>Votre commentaire :</label>";

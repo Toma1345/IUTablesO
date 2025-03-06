@@ -23,10 +23,10 @@ class Suscribecontroler extends Controler
 
         $img = '';
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/app/templates/images/"; 
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/upload/images/"; 
             $target_file = $target_dir . basename($_FILES["image"]["name"]);  
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $img = "/app/templates/images/" . basename($_FILES["image"]["name"]);  
+                $img = "/upload/images/" . basename($_FILES["image"]["name"]);  
             }
         }
 
@@ -61,7 +61,7 @@ class Suscribecontroler extends Controler
             echo "<script>document.addEventListener('DOMContentLoaded', function() { showModal(); });</script>";
         }
         
-        $this->render('login');
+        $this->redirectTo('login');
     }
 }
 

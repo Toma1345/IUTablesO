@@ -24,9 +24,7 @@
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
-                        <form action="/logout" method="get">
-                            <li><a id="deconnexion">Déconnexion</a></li>
-                        </form>
+                        <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
                     <?php endif; ?>
                 </div>
             </ul>
@@ -35,7 +33,7 @@
     <div class="login-container">
         <h2>Connexion</h2>
         
-        <form method="POST">
+        <form class="connexion" method="POST">
             <?php
                 if (isset($erreur)) {echo "<p class='error-message'>$erreur</p>";}
             ?>
@@ -44,7 +42,7 @@
             <label for="password">Mot de passe :</label><br>
             <input type="password" name="password" placeholder="Mot de passe" required><br>
             <input type="submit" value="Se connecter">
-            <p class="register-link">Pas encore inscrit ? <a href="register.php">Créez un compte</a></p>
+            <p class="register-link">Pas encore inscrit ? <a href="/suscribe">Créez un compte</a></p>
         </form>
     </div>
 </body>

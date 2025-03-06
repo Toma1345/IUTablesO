@@ -199,7 +199,7 @@ class Restaurant
             }
             $html .= "</ul>";
             $html .= "</p>";
-        }
+        } 
         if (isset($this->avis) && sizeof($this->avis) > 0) {
             $moyenne = array_sum(array_map(function ($a) {
                 return $a->getNote();
@@ -221,8 +221,9 @@ class Restaurant
 
     public function renderDetail(): string
     {
-        $html = "<h1>" . htmlspecialchars($this->getName()) . "</h1>";
-        $html .= "<p>Type : " . ucfirst(str_replace("_", " ", $this->getType())) . "</p>";
+        $html = "<section class='restaurant-detail'><h3>Information restaurant</h3>";
+        $html .= "<div class='restaurant-info'>";
+        $html .= "<p id='type'>Type : " . ucfirst(str_replace("_", " ", $this->getType())) . "</p>";
         $html .= "<h2>Horaires d'ouverture :</h2>";
         $html .= "<ul class='opening-hours'>";
         if (isset($this->openingHours)) {
@@ -242,31 +243,26 @@ class Restaurant
             $html .= "<li>Non renseigné</li>";
         }
         $html .= "</ul>";
+        if ($this->phone | $this->website) {
+            $html .= "<h2>Contact :</h2>";
+            // Contact (téléphone et site web)
+            if ($this->phone) {
+                $html .= "<p id='contact'><strong>Téléphone :</strong> <a href='tel:" . htmlspecialchars($this->phone) . "'>" . htmlspecialchars($this->phone) . "</a></p>";
+            }
+            if ($this->website) {
+                $html .= "<p id='contact'><strong>Site web :</strong> <a href='" . htmlspecialchars($this->website) . "' target='_blank'>" . htmlspecialchars($this->website) . "</a></p>";
+            }
+        }
+        $html .= "</div></section>";
+        
 
         if (isset($this->cuisine) && !empty($this->cuisine)) {
-            $html .= "<h2>Cuisine :</h2>";
+            $html .= "<section class='restaurant-detail'><h3>Cuisine</h3>";
             $html .= "<ul>";
             foreach ($this->cuisine as $cuisine) {
                 $html .= "<li>" . ucfirst($cuisine) . "</li>";
             }
-            $html .= "</ul>";
-        }
-
-        if (isset($this->avis) && !empty($this->avis)) {
-            $moyenne = array_sum(array_map(function ($a) {
-                return $a->getNote();
-            }, $this->avis)) / count($this->avis);
-            $pourcentage = ($moyenne / 5) * 100;
-            $html .= "<h2>Note moyenne :</h2>";
-            $html .= "<p>" . round($moyenne, 2) . "/5</p>";
-            $html .= "<div class='stars-container' style='width: 4.5em;'>";
-            $html .= "<div class='stars-background'>";
-            $html .= "★★★★★";
-            $html .= "</div>";
-            $html .= "<div class='stars-filled' style='width: " . $pourcentage . "%;'>";
-            $html .= "★★★★★";
-            $html .= "</div>";
-            $html .= "</div>";
+            $html .= "</ul></section>";
         }
 
         $options = [];
@@ -281,19 +277,29 @@ class Restaurant
         if ($this->wheelchair)
             $options[] = "Accessible en fauteuil roulant";
         if (!empty($options)) {
-            $html .= "<p><strong>Options :</strong></p><ul>";
+            $html .= "<section class='restaurant-detail'><h3>Options</h3><ul>";
             foreach ($options as $option) {
                 $html .= "<li>$option</li>";
             }
-            $html .= "</ul>";
+            $html .= "</ul></section>";
         }
 
-        // Contact (téléphone et site web)
-        if ($this->phone) {
-            $html .= "<p><strong>Téléphone :</strong> <a href='tel:" . htmlspecialchars($this->phone) . "'>" . htmlspecialchars($this->phone) . "</a></p>";
-        }
-        if ($this->website) {
-            $html .= "<p><strong>Site web :</strong> <a href='" . htmlspecialchars($this->website) . "' target='_blank'>" . htmlspecialchars($this->website) . "</a></p>";
+        if (isset($this->avis) && !empty($this->avis)) {
+            $moyenne = array_sum(array_map(function ($a) {
+                return $a->getNote();
+            }, $this->avis)) / count($this->avis);
+            $pourcentage = ($moyenne / 5) * 100;
+            $html .= "<section class='restaurant-detail'><h3>Note moyenne :</h3>";
+            $html .= "<div class='notation-avis'>";
+            $html .= "<p>" . round($moyenne, 2) . "/5</p>";
+            $html .= "<div class='stars-container' style='width: 4.5em;'>";
+            $html .= "<div class='stars-background'>";
+            $html .= "★★★★★";
+            $html .= "</div>";
+            $html .= "<div class='stars-filled' style='width: " . $pourcentage . "%;'>";
+            $html .= "★★★★★";
+            $html .= "</div>";
+            $html .= "</div></div>";
         }
 
         // Avis
@@ -304,14 +310,16 @@ class Restaurant
                 $html .= $avis->render();
             }
 
-            if(isset($_SESSION["user"]) && !empty($_SESSION["user"])) $html .= Avis::renderForm($this->osmId);
+            if($_SESSION["loggedin"]) $html .= Avis::renderForm($this->osmId);
             $html .= "</section>";
         } else {
-            $html .= "<p>Aucun avis pour le moment.</p>";
+            $html .= "<section class='restaurant-detail'><section class='avis-section'><p>Aucun avis pour le moment.</p>";
+            if($_SESSION["loggedin"]) $html .= Avis::renderForm($this->osmId);
+            $html .= "</section></section>";
         }
 
         // Carte Google Maps
-        $html .= "<div class='map-container'>";
+        $html .= "</section><div class='map-container'>";
         $html .= "<iframe
             src='https://www.google.com/maps?q={$this->latitude},{$this->longitude}&z=15&output=embed'
             width='100%'
@@ -321,7 +329,7 @@ class Restaurant
             allowfullscreen
             aria-hidden='false'
             tabindex='0'></iframe>";
-        $html .= "</div>";
+        $html .= "</div></section>";
         return $html;
     }
 

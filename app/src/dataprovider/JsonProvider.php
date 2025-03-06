@@ -180,7 +180,7 @@ class JsonProvider
 
         foreach ($data as $userData){
             if($userData["id"]==$id){
-                return new User($userData["id"], $userData["username"], $userData["email"], $userData["adresse"], $userData["telephone"], $userData["imageprofil"], $userData["created_at"]);
+                return new User($userData["id"], $userData["username"], $userData["email"],$userData["password"], $userData["adresse"], $userData["telephone"], $userData["imageprofil"], $userData["created_at"]);
             }
         }
         return null;

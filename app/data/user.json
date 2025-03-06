@@ -18,5 +18,35 @@
         "telephone": "0760361897",
         "imageprofil": "",
         "created_at": "2025-03-06 12:22:46"
+    },
+    {
+        "id": 3,
+        "username": "toto",
+        "email": "brossier.thomas.2@gmail.com",
+        "password": "$2y$10$dEZbA3db5EMFiGLIgKD\/DOG\/UFC6W0kNiUFhWJ6BXK6I.VkQcobCO",
+        "adresse": "6 rue du Lorem 45000 Orl\u00e9ans",
+        "telephone": "0601020304",
+        "imageprofil": "",
+        "created_at": "2025-03-06 14:13:24"
+    },
+    {
+        "id": 4,
+        "username": "testeur",
+        "email": "test@gege",
+        "password": "$2y$10$p.WMSt\/BmTTYZVzgbMcVfO7fXnWkpW\/cZRxxLsNcsL5\/dQWWaqCt6",
+        "adresse": "f ff gf",
+        "telephone": "feefe",
+        "imageprofil": "",
+        "created_at": "2025-03-06 14:53:21"
+    },
+    {
+        "id": 5,
+        "username": "toto_testeur",
+        "email": "toto@exemple.fr",
+        "password": "$2y$10$UWU7c8o5QQ5lVxIH42BGhuFxvTRa66ElWra\/CYplEeRYtuBpUKX.2",
+        "adresse": "06 45 Orl\u00e9ans",
+        "telephone": "06",
+        "imageprofil": "",
+        "created_at": "2025-03-06 15:00:14"
     }
 ]

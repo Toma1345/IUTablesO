@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="right-section">
-                    <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <?php if ($_SESSION['loggedin']==false): ?>
                         <li><a id="connexion" href="/login">Connexion</a></li>
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
@@ -39,12 +39,6 @@
             <p><strong>Adresse :</strong> <?php echo $_SESSION['adresse'] ?></p>
             <p><strong>Téléphone :</strong> <?php echo $_SESSION['tel'] ?></p>
             <p><strong>Email :</strong> <?php echo $_SESSION['email'] ?></p>
-        </div>
-    </div>
-    <div class="profile-container">
-        <div class="profile-info">
-            <h2>Mes commentaires et avis</h2>
-            <p><strong>Chat + :</strong> "Très bon restaurant où on peut personnaliser à notre guise les gauffres".</p>
         </div>
     </div>
 </body>

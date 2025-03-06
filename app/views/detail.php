@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/detail.css">
+    <link rel="stylesheet" href="/static/header.css">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 </head>
 
@@ -25,9 +26,7 @@
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
-                        <form action="/logout" method="get">
-                            <li><a id="deconnexion">Déconnexion</a></li>
-                        </form>
+                        <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
                     <?php endif; ?>
                 </div>
             </ul>
@@ -38,11 +37,9 @@
         <section class="intro">
             <h1><?=$restau->getName()?></h1>
         </section>
-        <section class="restaurant-detail">
-                <?php
-                    echo $restau->renderDetail();
-                ?>
-        </section>
+        <?php
+            echo $restau->renderDetail();
+        ?>
     </main>
     <?php
         require 'footer.php';
