@@ -5,10 +5,11 @@ namespace IUT\dataprovider;
 
 class Avis
 {
-    private string $utilisateur;
+    private User $utilisateur;
+    private Restaurant $restau;
     private string $commentaire;
     private int $note;
-    public function __construct(string $utilisateur, string $commentaire, int $note)
+    public function __construct(User $utilisateur, Restaurant $restau, string $commentaire, int $note)
     {
         if ($note <= 0) {
             throw new \Exception("La note doit être un entier positif.");
@@ -16,6 +17,7 @@ class Avis
             throw new \Exception("La note doit être inférieure ou égale à 5.");
         }
         $this->utilisateur = $utilisateur;
+        $this->restau = $restau;
         $this->commentaire = $commentaire;
         $this->note = $note;
     }
@@ -34,18 +36,18 @@ class Avis
     public function render(): string
     {
         $html = "<div class='avis'>";
-        $html .= "<p><strong>Utilisateur : </strong>" . ucfirst($this->utilisateur) . "</p>";
+        $html .= "<p><strong>Utilisateur : </strong>" . ucfirst($this->utilisateur->getUsername()) . "</p>";
         $html .= "<p><strong>Commentaire : </strong>" . ucfirst($this->commentaire) . "</p>";
         $html .= "<p><strong>Note : </strong>" . $this->note . "/5" . $this->renderStars() . "</p>";
         $html .= "</div>";
         return $html;
     }
 
-    public static function renderForm(): string
+    public static function renderForm(string $idRestau): string
     {
         $html = "<div class='avis'>";
         $html .= "<p>Ajouter un avis</p>";
-        $html .= "<form action='/detail' method='POST'>";
+        $html .= "<form action='/detail/".$idRestau."'method='POST'>";
         $html .= "<div>";
         $html .= "<label for='commentaire'>Votre commentaire :</label>";
         $html .= "<textarea class='avis-textarea' id='commentaire' name='commentaire' required></textarea>";
@@ -77,11 +79,11 @@ class Avis
     {
         $this->note = $note;
     }
-    public function getUtilisateur(): string
+    public function getUtilisateur(): User
     {
         return $this->utilisateur;
     }
-    public function setUtilisateur(string $utilisateur): void
+    public function setUtilisateur(User $utilisateur): void
     {
         $this->utilisateur = $utilisateur;
     }
@@ -92,6 +94,11 @@ class Avis
     public function setCommentaire(string $commentaire): void
     {
         $this->commentaire = $commentaire;
+    }
+
+    public function getRestaurant(): Restaurant
+    {
+        return $this->restau;
     }
 
 }

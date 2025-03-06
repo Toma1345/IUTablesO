@@ -8,7 +8,7 @@ return [
     ],
     '/detail' => [
         'controler' => IUT\controlers\Detailcontroler::class,
-        'methods' => ['GET'],
+        'methods' => ['GET', 'POST'],
         'redirect' => '/',
         'requiresArgument' => true
     ],
@@ -38,6 +38,12 @@ return [
     ],
     '/suscribe' => [
         'controler' => IUT\controlers\Suscribecontroler::class,
+        'methods' => ['GET', 'POST'],
+        'redirect' => '/',
+        'requiresArgument' => false
+    ],
+    '/mesavis' => [
+        'controler' => IUT\controlers\Aviscontroler::class,
         'methods' => ['GET', 'POST'],
         'redirect' => '/',
         'requiresArgument' => false
