@@ -37,6 +37,7 @@ class Avis
     {
         $html = "<div class='avis'>";
          $html .= "<p><strong>Utilisateur : </strong><p class='comment'>" . ucfirst($this->utilisateur->getUsername()) . "</p></p>";
+         $html .= "<p><strong>Restaurant : </strong><p class='comment'><a href='http://localhost:5000/detail/" . $this->restau->getOsmId() . "'>" . ucfirst($this->restau->getName()) . "</a></p></p>";
         $html .= "<p><strong>Commentaire : </strong><p class='comment'>" . ucfirst($this->commentaire) . "</p></p>";
         $html .= "<p><strong>Note : </strong><div class='notation-avis'>" . $this->note . "/5" . $this->renderStars() . "</p>";
         if($this->utilisateur->getId() == $_SESSION["user"]->getId()){

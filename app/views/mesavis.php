@@ -41,12 +41,16 @@
         </section>
         <section class="restaurant-detail">
             <section class='avis-section'>
-                <h3>Vos avis</h3>
-                <?php
-                foreach ($avis as $currAvis) {
-                    echo $currAvis->render("/mesavis");
-                }
-                ?>
+                <?php if (empty($avis)): ?>
+                    <h3>Vous n'avez pas encore publié d'avis</h3>
+                <?php else: ?>
+                    <h3>Vos avis</h3>
+                    <?php
+                    foreach ($avis as $currAvis) {
+                        echo $currAvis->render("/mesavis");
+                    }
+                    ?>
+                <?php endif; ?>
             </section>
         </section>
     </main>
