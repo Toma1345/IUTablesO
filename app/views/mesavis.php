@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes avis - IUTables'O</title>
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/static/mesavis.css">
+    <link rel="stylesheet" href="/static/header.css">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 </head>
 
@@ -13,11 +14,11 @@
     <header>
         <nav>
             <ul>
-                <li><img src="./../images/IUTables’O.png" alt="logo"></li>
+                <li><img src="/static/images/IUTables’O.png" alt="logo"></li>
 
                 <div class="center-section">
                     <li><a href="/">Accueil</a></li>
-                    <li><a id="rechercher" href="recherche.php">Rechercher un restaurant</a></li>
+                    <li><a id="rechercher" href="/search">Rechercher un restaurant</a></li>
                 </div>
 
                 <div class="right-section">
@@ -26,6 +27,7 @@
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
+                        <li><a id="compte" href="/mesavis">Mes avis</a></li>
                         <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
                     <?php endif; ?>
                 </div>
@@ -48,9 +50,9 @@
             </section>
         </section>
     </main>
-    <footer>
-        <p>Chef de projet : Thomas Brossier - Membres de l'équipe : Nicolas Nauche, Kylian Dumas, Claire Deneau</p>
-    </footer>
+<?php
+    require 'footer.php';
+?>
 </body>
 
 </html>

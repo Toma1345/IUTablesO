@@ -26,6 +26,7 @@
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
                         <li><a id="compte" href="/me">Mon compte</a></li>
+                        <li><a id="compte" href="/mesavis">Mes avis</a></li>
                         <li><a id="deconnexion" href="/logout">Déconnexion</a></li>
                     <?php endif; ?>
                 </div>

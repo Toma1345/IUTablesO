@@ -6,6 +6,9 @@ use IUT\dataprovider\User;
     require_once __DIR__ . '/../vendor/autoload.php';
 
     session_start();
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['user']=new User(0,"simple_visiteur","","","","","","2025-03-06 16:19:00");
+    }
 
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
