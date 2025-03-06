@@ -1,0 +1,13 @@
+[
+    {},
+    {
+        "id": 2,
+        "username": "nico",
+        "email": "nicolasnauche@outlook.fr",
+        "password": "$2y$10$UPhr9SwABN1dE6ZY5R86DuzIgMhL3ljYVBru237zxY74DS469riHK",
+        "adresse": "25 rue de la lionne 45000 Orl\u00e9ans",
+        "telephone": "0760361897",
+        "imageprofil": "",
+        "created_at": "2025-03-06 11:53:40"
+    }
+]
