@@ -39,3 +39,13 @@ function updateToggleResult() {
 toggles.forEach(toggle => {
     toggle.addEventListener('change', updateToggleResult);
 });
+
+document.getElementById('reset_filters').addEventListener('click', function () {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    updateToggleResult();
+    document.getElementById('selected-types').textContent = 'Aucune option sélectionnée.';
+    document.getElementById('selected-cuisines').textContent = 'Aucune option sélectionnée.';
+});
