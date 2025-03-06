@@ -1,26 +1,26 @@
-{
-    "1": {
+[
+    {
         "userId": 1,
         "restauId": "3422189698",
-        "commentaire": "Coucou",
-        "note": 3
-    },
-    "2": {
-        "userId": 1,
-        "restauId": "3422189698",
-        "commentaire": "Tr\u00e8s bon miam",
+        "commentaire": "De tr\u00e8s bonne gaufre !\r\nUn r\u00e9gal ! Je reviendrai.",
         "note": 5
     },
-    "3": {
-        "userId": 1,
-        "restauId": "3422189698",
-        "commentaire": "Coucou",
-        "note": 3
-    },
-    "4": {
-        "userId": 3,
+    {
+        "userId": 2,
         "restauId": "9136326362",
-        "commentaire": "novuel avis",
-        "note": 1
+        "commentaire": "Restaurant avec une ambiance sympathique. Des plats originaux.",
+        "note": 4
+    },
+    {
+        "userId": 2,
+        "restauId": "2297514170",
+        "commentaire": "Tr\u00e8s bon repas !\r\nLe patron est \u00e9galement sympa, on peut obtenir de bonne r\u00e9duction :)",
+        "note": 4
+    },
+    {
+        "userId": 3,
+        "restauId": "3422189698",
+        "commentaire": "Tr\u00e8s petit endroit cosi pour s'arr\u00eater prendre un gouter.\r\nPrix un peu excessif ...",
+        "note": 2
     }
-}
+]

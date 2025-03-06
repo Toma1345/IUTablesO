@@ -10,7 +10,8 @@ class Logoutcontroler extends Controler
     public function get(string $param): void
     {
         $_SESSION['loggedin'] = false;
-        $_SESSION['user']="";
+        $jp = new JsonProvider();
+        $_SESSION['user']=$jp->getUser(0);
         $this->render('login');
     }
 }

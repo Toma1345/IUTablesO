@@ -33,7 +33,7 @@
     </header>
     <div class="profile-container">
         <div class="profile-photo">
-            <img src="<?php echo $_SESSION['img'] ?>" alt="Photo de profil">
+            <img src="<?php echo $_SESSION['img']!="" ? $_SESSION['img'] : '/static/images/default-profile.png'; ?>" alt="Photo de profil">
         </div>
         <div class="profile-info">
             <h2><?php echo $_SESSION['user_name'] ?></h2>

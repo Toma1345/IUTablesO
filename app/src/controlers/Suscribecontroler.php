@@ -23,12 +23,17 @@ class Suscribecontroler extends Controler
 
         $img = '';
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/upload/images/"; 
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);  
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/uploads/images/";
+            if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $img = "/upload/images/" . basename($_FILES["image"]["name"]);  
+                $img = "/uploads/images/" . basename($_FILES["image"]["name"]);
+            } else {
+                error_log("Échec de l'upload.");
             }
         }
+        
 
         $jp = new JsonProvider();
         $users = $jp->loadUsers();
