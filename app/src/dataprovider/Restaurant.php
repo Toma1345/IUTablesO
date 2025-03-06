@@ -108,65 +108,67 @@ class Restaurant
         if ($openingHours === null) {
             return null;
         }
-        // Initialiser un tableau de 7 jours de la semaine avec des valeurs vides
+
+        // Initialiser un tableau pour chaque jour de la semaine
         $hours = array_fill(0, 7, "");
 
         // Associer les abréviations des jours de la semaine à leurs indices
         $dayMap = [
-            "Mo" => 0,
-            "Tu" => 1,
-            "We" => 2,
-            "Th" => 3,
-            "Fr" => 4,
-            "Sa" => 5,
-            "Su" => 6,
+            "Mo" => 0, "Tu" => 1, "We" => 2, "Th" => 3,
+            "Fr" => 4, "Sa" => 5, "Su" => 6
         ];
 
-        // Diviser l'entrée par les points-virgules pour séparer chaque plage de jours et horaires
-        $segments = explode(';', $openingHours);
+        // Diviser l'entrée par les points-virgules pour séparer chaque plage
+        $segments = preg_split('/[;,]/', $openingHours);
 
         foreach ($segments as $segment) {
-            // Supprimer les espaces inutiles et diviser les jours et horaires
             $segment = trim($segment);
-            if (!$segment)
-                continue;
+            if (!$segment) continue;
 
-            list($daysPart, $hoursPart) = explode(' ', $segment, 2);
+            // Séparer jours et horaires
+            $parts = explode(' ', $segment, 2);
+            if (count($parts) < 2) continue; // Évite les erreurs d'index
 
-            // Vérifier si c'est une plage de jours ou un seul jour
+            list($daysPart, $hoursPart) = $parts;
+
+            // Vérifier si c'est une plage de jours (ex: "Mo-Th")
             if (strpos($daysPart, '-') !== false) {
-                // Plage de jours (ex: "Mo-Th")
                 list($startDay, $endDay) = explode('-', $daysPart);
-                $startIndex = $dayMap[$startDay];
-                $endIndex = $dayMap[$endDay];
+                if (isset($dayMap[$startDay]) && isset($dayMap[$endDay])) {
+                    for ($i = $dayMap[$startDay]; $i <= $dayMap[$endDay]; $i++) {
+                        $hours[$i] = $hoursPart;
+                    }
+                }
+            }
+            // Vérifier si c'est un seul jour (ex: "Fr")
+            elseif (isset($dayMap[$daysPart])) {
+                $hours[$dayMap[$daysPart]] = $hoursPart;
+            }
+            // Gérer les jours spéciaux comme "PH" (jours fériés)
+            elseif ($daysPart === "PH") {
+                // Vous pouvez ajouter une logique spécifique pour les jours fériés ici
+                // Par exemple, appliquer les horaires aux dimanches
+                $hours[6] = $hoursPart;
+            }
+        }
 
-                // Remplir tous les jours de la plage avec les horaires
-                for ($i = $startIndex; $i <= $endIndex; $i++) {
-                    $hours[$i] = $hoursPart;
-                }
-            } elseif (strpos($daysPart, ',') !== false) {
-                // Liste de jours séparés par des virgules (ex: "Mo,We,Fr")
-                $individualDays = explode(',', $daysPart);
-                foreach ($individualDays as $day) {
-                    $dayIndex = $dayMap[$day];
-                    $hours[$dayIndex] = $hoursPart;
-                }
-            } else {
-                // Un seul jour (ex: "Fr")
-                $dayIndex = $dayMap[$daysPart];
-                $hours[$dayIndex] = $hoursPart;
+        // Remplacer les chaînes vides par "Fermé"
+        foreach ($hours as &$hour) {
+            if (empty($hour)) {
+                $hour = "Fermé";
             }
         }
 
         return $hours;
     }
 
+
     public function renderCard(): string
     {
         $html = "<div class='restaurant-card'>";
         $html .= "<a class='restaurant-card-detail' href='/detail/" . $this->osmId . "'><h3>";
         $html .= ucfirst($this->getName());
-        $html .= "</h3><a><p>Type : ";
+        $html .= "</h3><p>Type : ";
         $html .= ucfirst(str_replace("_", " ", $this->getType()));
         $html .= "</p>";
         $html .= "<p>Horaires d'ouverture : ";
@@ -213,7 +215,7 @@ class Restaurant
             $html .= "</div>";
             $html .= "</div>";
         }
-        $html .= "</div>";
+        $html .= "</a></div>";
         return $html;
     }
 

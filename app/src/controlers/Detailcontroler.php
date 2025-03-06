@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
+
 namespace IUT\controlers;
 
 use IUT\dataprovider\Avis;
+
 use IUT\dataprovider\JsonProvider;
 
 class Detailcontroler extends Controler
@@ -13,6 +15,7 @@ class Detailcontroler extends Controler
         $restau = $jp->getById($param);
         $restau->setAvis($jp->getAvis($restau));
         $this->render('restaurant', ['restau' => $restau]);
+
     }
 
     public function post(string $param): void

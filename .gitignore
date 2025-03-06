@@ -1,1 +1,16 @@
 vendor/
+# Ignore les dossiers et fichiers liés à Composer
+/app/vendor/
+/app/vendor/composer/
+composer.lock
+
+# Cache et logs
+/cache/
+*.log
+
+# Fichiers temporaires
+/tmp/
+
+# Configuration de l'IDE
+.idea/
+.vscode/
