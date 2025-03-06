@@ -119,7 +119,7 @@ class Restaurant
         ];
 
         // Diviser l'entrée par les points-virgules pour séparer chaque plage
-        $segments = explode(';', $openingHours);
+        $segments = preg_split('/[;,]/', $openingHours);
 
         foreach ($segments as $segment) {
             $segment = trim($segment);
@@ -140,22 +140,22 @@ class Restaurant
                     }
                 }
             }
-            // Vérifier si c'est une liste de jours séparés par des virgules (ex: "Mo,We,Fr")
-            elseif (strpos($daysPart, ',') !== false) {
-                $individualDays = explode(',', $daysPart);
-                foreach ($individualDays as $day) {
-                    if (isset($dayMap[$day])) {
-                        $hours[$dayMap[$day]] = $hoursPart;
-                    }
-                }
-            }
             // Vérifier si c'est un seul jour (ex: "Fr")
             elseif (isset($dayMap[$daysPart])) {
                 $hours[$dayMap[$daysPart]] = $hoursPart;
             }
-            // Ignorer les jours fériés (PH)
+            // Gérer les jours spéciaux comme "PH" (jours fériés)
             elseif ($daysPart === "PH") {
-                continue;
+                // Vous pouvez ajouter une logique spécifique pour les jours fériés ici
+                // Par exemple, appliquer les horaires aux dimanches
+                $hours[6] = $hoursPart;
+            }
+        }
+
+        // Remplacer les chaînes vides par "Fermé"
+        foreach ($hours as &$hour) {
+            if (empty($hour)) {
+                $hour = "Fermé";
             }
         }
 
