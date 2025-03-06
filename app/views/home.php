@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="right-section">
-                    <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <?php if ($_SESSION['loggedin']==false): ?>
                         <li><a id="connexion" href="/login">Connexion</a></li>
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>

@@ -44,8 +44,47 @@ class JsonProvider
         return $restaurants;
     }
 
-    public function getById(string $id): ?Restaurant
+    public function loadUsers(): array
+    {
+        if (!file_exists($this->userFilePath)) {
+            throw new \Exception("Le fichier JSON n'existe pas.");
+        }
 
+        $jsonData = file_get_contents($this->userFilePath);
+
+        $data = json_decode($jsonData, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+        }
+
+        $users = [];
+
+        foreach ($data as $userData) {
+            $users[] = $this->mapToUser($userData);
+        }
+        return $users;
+    }
+
+    public function uploadUsers(array $newUser): void 
+{
+    if (!file_exists($this->userFilePath)) {
+        throw new \Exception("Le fichier JSON n'existe pas.");
+    }
+
+    $jsonData = file_get_contents($this->userFilePath);
+    $data = json_decode($jsonData, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+    }
+
+    $data[] = $newUser;
+
+    file_put_contents($this->userFilePath, json_encode($data, JSON_PRETTY_PRINT));
+}
+
+    public function getById(string $id): ?Restaurant
     {
         if (!file_exists($this->jsonFilePath)) {
             throw new \Exception("Le fichier JSON n'existe pas.");
@@ -100,6 +139,20 @@ class JsonProvider
         );
     }
 
+    private function mapToUser(array $userData): User
+    {
+        return new User(
+            $userData['id'],
+            $userData['username'],
+            $userData['email'],
+            $userData['password'],
+            $userData['adresse'],
+            $userData['telephone'],
+            $userData['imageprofil'],
+            $userData['created_at']
+        );
+    }
+
     private function mapToBoolean(?string $value): ?bool
     {
         if ($value === null) {
@@ -127,11 +180,12 @@ class JsonProvider
 
         foreach ($data as $userData){
             if($userData["id"]==$id){
-                return new User($userData["id"], $userData["username"], $userData["email"], $userData["adresse"], $userData["telephone"], $userData["imageprofil"], $userData["created_at"]);
+                return new User($userData["id"], $userData["username"], $userData["email"],$userData["password"], $userData["adresse"], $userData["telephone"], $userData["imageprofil"], $userData["created_at"]);
             }
         }
         return null;
     }
+
     public function getAvis(Restaurant $restau): array
     {
         $res = [];
@@ -230,4 +284,4 @@ class JsonProvider
         }
         return $res;
     }
-}
+}   

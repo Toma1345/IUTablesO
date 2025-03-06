@@ -9,6 +9,7 @@ class Logoutcontroler extends Controler
 {
     public function get(string $param): void
     {
-        $this->render('logout');
+        $_SESSION['loggedin'] = false;
+        $this->render('login');
     }
 }

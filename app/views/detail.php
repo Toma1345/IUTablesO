@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/detail.css">
+    <link rel="stylesheet" href="/static/header.css">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 </head>
 
@@ -20,7 +21,7 @@
                 </div>
 
                 <div class="right-section">
-                    <?php if (!isset($_SESSION['loggedin'])): ?>
+                    <?php if ($_SESSION['loggedin']==false): ?>
                         <li><a id="connexion" href="/login">Connexion</a></li>
                         <li><a id="inscription" href="/suscribe">Inscription</a></li>
                     <?php else: ?>
@@ -36,11 +37,9 @@
         <section class="intro">
             <h1><?=$restau->getName()?></h1>
         </section>
-        <section class="restaurant-detail">
-                <?php
-                    echo $restau->renderDetail();
-                ?>
-        </section>
+        <?php
+            echo $restau->renderDetail();
+        ?>
     </main>
     <?php
         require 'footer.php';

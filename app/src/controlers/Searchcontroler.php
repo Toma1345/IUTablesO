@@ -12,6 +12,9 @@ class Searchcontroler extends Controler
     {
         $jp = new JsonProvider(__DIR__ . "/../../data/restaurants_orleans.json");
         $restaurants = $jp->loadRestaurants();
+        foreach($restaurants as $resto){
+            $resto->setAvis($jp->getAvis($resto));
+        }
 
         // Récupérer les filtres appliqués
         $searchQuery = isset($_GET['recherche']) ? $_GET['recherche'] : '';
