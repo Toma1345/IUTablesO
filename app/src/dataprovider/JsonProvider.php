@@ -235,6 +235,28 @@ class JsonProvider
         file_put_contents($this->avisFilePath, json_encode($data, JSON_PRETTY_PRINT));
     }
 
+    public function removeAvis(Avis $avis): void
+    {
+        $jsonData = file_get_contents($this->avisFilePath);
+        $data = json_decode($jsonData, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Erreur de décodage JSON: " . json_last_error_msg());
+        }
+
+        foreach($data as $i => $avisData){
+            if ($avisData["userId"] == $avis->getUtilisateur()->getId() &&
+                $avisData["restauId"] == $avis->getRestaurant()->getOsmId() &&
+                $avisData["commentaire"] == $avis->getCommentaire() &&
+                $avisData["note"] == $avis->getNote()){
+                unset($data[$i]);
+                break;
+            }
+        }
+
+        file_put_contents($this->avisFilePath, json_encode($data, JSON_PRETTY_PRINT));
+    }
+
     public function getAvisByUser(User $user): array
     {
         $res = [];

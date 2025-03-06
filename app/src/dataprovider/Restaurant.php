@@ -307,7 +307,7 @@ class Restaurant
             $html .= "<section class='avis-section'>";
             $html .= "<h3>Avis des utilisateurs</h3>";
             foreach ($this->avis as $avis) {
-                $html .= $avis->render();
+                $html .= $avis->render("/detail/".$this->getOsmId());
             }
 
             if($_SESSION["loggedin"]) $html .= Avis::renderForm($this->osmId);
