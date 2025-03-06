@@ -33,12 +33,21 @@ class Avis
         $html .= "</div>";
         return $html;
     }
-    public function render(): string
+    public function render(string $route): string
     {
         $html = "<div class='avis'>";
         $html .= "<p><strong>Utilisateur : </strong>" . ucfirst($this->utilisateur->getUsername()) . "</p>";
         $html .= "<p><strong>Commentaire : </strong>" . ucfirst($this->commentaire) . "</p>";
         $html .= "<p><strong>Note : </strong>" . $this->note . "/5" . $this->renderStars() . "</p>";
+        if($this->utilisateur->getId() == $_SESSION["user"]->getId()){
+            $html .= "<form method='POST' action='".$route."/'>";
+            $html .= "<input type='submit' name='submit' id='submit' value='🗑'></input>";
+            $html .= "<input type='hidden' id='userId' name='userId' value='".$this->utilisateur->getId()."'/>";
+            $html .= "<input type='hidden' id='restauId' name='restauId' value='".$this->restau->getOsmId()."'/>";
+            $html .= "<input type='hidden' id='commentaire' name='commentaire' value='".$this->commentaire."'/>";
+            $html .= "<input type='hidden' id='note' name='note' value='".$this->note."'/>";
+            $html .= "</form>";
+        }
         $html .= "</div>";
         return $html;
     }
@@ -63,7 +72,7 @@ class Avis
         $html .= "</select>";
         $html .= "</div>";
         $html .= "<div>";
-        $html .= "<button type='submit' class='add-avis-btn'>Ajouter un avis</button>";
+        $html .= "<input type='submit' class='add-avis-btn' name='submit' id='submit' value='Ajouter un avis'></input>";
         $html .= "</div>";
         $html .= "</form>";
         $html .= "</div>";

@@ -42,7 +42,7 @@
                 <h3>Vos avis</h3>
                 <?php
                 foreach ($avis as $currAvis) {
-                    echo $currAvis->render();
+                    echo $currAvis->render("/mesavis");
                 }
                 ?>
             </section>

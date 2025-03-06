@@ -14,7 +14,7 @@ class Detailcontroler extends Controler
         $jp = new JsonProvider();
         $restau = $jp->getById($param);
         $restau->setAvis($jp->getAvis($restau));
-        $this->render('restaurant', ['restau' => $restau]);
+        $this->render('detail', ['restau' => $restau]);
 
     }
 
@@ -22,9 +22,16 @@ class Detailcontroler extends Controler
     {
         $jp = new JsonProvider();
         $restau = $jp->getById($param);
-        $user = $_SESSION["user"];
-        $avis = new Avis($user, $restau, $_POST["commentaire"], intval($_POST["note"]));
-        $jp->addAvis($avis);
-        $this->redirectTo("/detail/".$param);
+        if($_POST["submit"] === "Ajouter un avis"){
+            $user = $_SESSION["user"];
+            $avis = new Avis($user, $restau, $_POST["commentaire"], intval($_POST["note"]));
+            $jp->addAvis($avis);
+            $this->redirectTo("/detail/".$param);
+        }else{
+            $user = $jp->getUser(intval($_POST["userId"]));
+            $avis = new Avis($user, $restau, $_POST["commentaire"], intval($_POST["note"]));
+            $jp->removeAvis($avis);
+            $this->redirectTo("/detail/".$param);
+        }
     }
 }
