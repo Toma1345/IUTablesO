@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/logout.css">
     <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/home.css">
     <title>IUTables'O - Accueil</title>
 </head>
 <body>
@@ -34,7 +35,7 @@
     <div class="login-container">
         <h2>Accueil</h2>
     </div>
-    <div>
+    <div class="restaurant-list">
         <?php
             foreach ($restaus as $restau){
                 echo $restau->renderCard();
