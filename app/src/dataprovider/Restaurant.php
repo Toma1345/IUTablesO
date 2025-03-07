@@ -228,7 +228,7 @@ class Restaurant
             $html .= "<li>Non renseigné</li>";
         }
         $html .= "</ul>";
-        if ($this->phone | $this->website) {
+        if (isset($this->phone) | isset($this->website)) {
             $html .= "<h2>Contact :</h2>";
             // Contact (téléphone et site web)
             if ($this->phone) {
