@@ -34,6 +34,13 @@
     <div class="login-container">
         <h2>Accueil</h2>
     </div>
+    <div>
+        <?php
+            foreach ($restaus as $restau){
+                echo $restau->renderCard();
+            }
+        ?>
+    </div>
 </body>
 
 <?php

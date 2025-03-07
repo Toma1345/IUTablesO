@@ -9,6 +9,8 @@ class Homecontroler extends Controler
 {
     public function get(string $param): void
     {
-        $this->render('home');
+        $jp = new JsonProvider();
+        $restaus = $jp->loadRestaurants(5);
+        $this->render('home', ['restaus' => $restaus]);
     }
 }
