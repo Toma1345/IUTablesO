@@ -199,7 +199,22 @@ class Restaurant
             }
             $html .= "</ul>";
             $html .= "</p>";
-        } 
+        }
+        if (isset($this->avis) && sizeof($this->avis) > 0) {
+            $moyenne = array_sum(array_map(function ($a) {
+                return $a->getNote();
+            }, $this->avis)) / count($this->avis);
+            $pourcentage = ($moyenne / 5) * 100;
+            $html .= "<p>Note : " . round($moyenne, 2) . "/5</p>";
+            $html .= "<div class='stars-container' style='width: 4.5em;'>";
+            $html .= "<div class='stars-background'>";
+            $html .= "★★★★★";
+            $html .= "</div>";
+            $html .= "<div class='stars-filled' style='width: " . $pourcentage . "%;'>";
+            $html .= "★★★★★";
+            $html .= "</div>";
+            $html .= "</div>";
+        }
         $html .= "</a></div>";
         return $html;
     }
