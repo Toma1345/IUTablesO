@@ -32,6 +32,6 @@ Une fois dans ce repertoire, vous pouvez lancer le site via la commande : `php -
 ### Pour un visiteur connecté (donc préalablement inscrit)
 - Accès à toutes les pages que l'utilisateur non connecté à accès (excepté inscription et connexion car il est déjà connecté)
 - Visualisation des notes laissés par les autres utilisateurs
-- Visusalisation des avis/critiques laissés par les autres utilisateurs
-- Accès au information de son profil (adresse renseigné lors de l'inscription, téléphone, email)
+- Visualisation  des avis/critiques laissés par les autres utilisateurs
+- Accès aux informations de son profil (adresse renseigné lors de l'inscription, téléphone, email)
 - Administration de ses avis (suppression / accès direct au détail du restaurant)
