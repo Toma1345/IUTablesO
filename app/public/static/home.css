@@ -1,0 +1,55 @@
+/* Liste des restaurants */
+.restaurant-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: space-between;
+    overflow-x: auto;
+}
+
+/* Carte individuelle de restaurant */
+.restaurant-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 0 auto;
+    min-width: 200px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+
+.restaurant-card a {
+    text-decoration: none;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Titres des restaurants */
+.restaurant-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Informations générales */
+.restaurant-card p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.restaurant-card ul li {
+    color: #222;
+    list-style-type: none;
+    margin-left: 10px;
+}
+
+/* Mise en valeur des labels */
+.restaurant-card p strong {
+    color: #222;
+}

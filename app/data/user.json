@@ -1,0 +1,52 @@
+[
+    {
+        "id": 0,
+        "username": "simple_visiteur",
+        "email": "",
+        "password": "",
+        "adresse": "",
+        "telephone": "",
+        "imageprofil": "",
+        "created_at": "2025-03-06 16:19:00"
+    },
+    {
+        "id": 1,
+        "username": "Thomas",
+        "email": "thomas@exemple.com",
+        "password": "$2y$10$sZKHZAqQ4LLZBlokv5na4epKZczTsahCyzUVh2y.Aqhhursp9E61.",
+        "adresse": "1 bis rue du chocolat 45000 Orl\u00e9ans",
+        "telephone": "0601020304",
+        "imageprofil": "\/uploads\/images\/profil_user_t.png",
+        "created_at": "2025-03-06 20:39:49"
+    },
+    {
+        "id": 2,
+        "username": "Kylian",
+        "email": "kylian@exemple.fr",
+        "password": "$2y$10$\/hAkmy8tltXlFsMJuzkYA.CZFHq.QDJ6.B.RCMty0vy9gr\/pBb.i.",
+        "adresse": "1 rue du cocotier 45000 Orl\u00e9ans",
+        "telephone": "0701020304",
+        "imageprofil": "\/uploads\/images\/profil_user_k.png",
+        "created_at": "2025-03-06 20:50:10"
+    },
+    {
+        "id": 3,
+        "username": "Claire",
+        "email": "claire@test.fr",
+        "password": "$2y$10$wfuKakzjPPurDmKGs1v7JeVaHsWz8lFJtFlBaLIN0.L9blL5tXN4y",
+        "adresse": "8 rue de la route 45000 Olivet",
+        "telephone": "0800020504",
+        "imageprofil": "\/uploads\/images\/profil_user_c.png",
+        "created_at": "2025-03-06 21:04:37"
+    },
+    {
+        "id": 4,
+        "username": "Nicolas",
+        "email": "nico@test.com",
+        "password": "$2y$10$Q9KwdcsBEcTOgVPpaBvgQuh.tCDSia5Ud1X5ZHgO3c\/VGNicmuc9W",
+        "adresse": "1 rue des ananas 45000 Orl\u00e9ans",
+        "telephone": "0701020304",
+        "imageprofil": "\/uploads\/images\/profil_user_n.png",
+        "created_at": "2025-03-06 21:08:36"
+    }
+]
